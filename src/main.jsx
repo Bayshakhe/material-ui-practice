@@ -9,6 +9,10 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import TextFieldPage from "./Pages/TextFieldPage.jsx";
+import OthersFieldPage from "./Pages/OthersFieldPage.jsx";
+import RatingPage from "./Pages/RatingPage.jsx";
+import AutoCompletePage from "./Pages/AutoCompletePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,22 @@ const router = createBrowserRouter([
       {
         path: "/button",
         element: <ButtonPage></ButtonPage>,
+      },
+      {
+        path: "/textfield",
+        element: <TextFieldPage></TextFieldPage>,
+      },
+      {
+        path: "/othersFields",
+        element: <OthersFieldPage></OthersFieldPage>,
+      },
+      {
+        path: "/rating",
+        element: <RatingPage></RatingPage>,
+      },
+      {
+        path: "/autoComplete",
+        element: <AutoCompletePage></AutoCompletePage>,
       },
     ],
   },
