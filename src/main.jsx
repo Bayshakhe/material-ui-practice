@@ -13,6 +13,10 @@ import TextFieldPage from "./Pages/TextFieldPage.jsx";
 import OthersFieldPage from "./Pages/OthersFieldPage.jsx";
 import RatingPage from "./Pages/RatingPage.jsx";
 import AutoCompletePage from "./Pages/AutoCompletePage.jsx";
+import LayoutPage from "./Pages/LayoutPage.jsx";
+import CardsPage from "./Pages/CardsPage.jsx";
+import AccordionPage from "./Pages/AccordionPage.jsx";
+import ImageListPage from "./Pages/ImageListPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +46,22 @@ const router = createBrowserRouter([
       {
         path: "/autoComplete",
         element: <AutoCompletePage></AutoCompletePage>,
+      },
+      {
+        path: "/layout",
+        element: <LayoutPage></LayoutPage>,
+      },
+      {
+        path: "/card",
+        element: <CardsPage></CardsPage>,
+      },
+      {
+        path: "/accordion",
+        element: <AccordionPage></AccordionPage>,
+      },
+      {
+        path: "/imageList",
+        element: <ImageListPage></ImageListPage>,
       },
     ],
   },
