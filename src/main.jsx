@@ -17,6 +17,9 @@ import LayoutPage from "./Pages/LayoutPage.jsx";
 import CardsPage from "./Pages/CardsPage.jsx";
 import AccordionPage from "./Pages/AccordionPage.jsx";
 import ImageListPage from "./Pages/ImageListPage.jsx";
+import TablePage from "./Pages/TablePage.jsx";
+import DialogPage from "./Pages/DialogPage.jsx";
+import TabPage from "./Pages/TabPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +65,18 @@ const router = createBrowserRouter([
       {
         path: "/imageList",
         element: <ImageListPage></ImageListPage>,
+      },
+      {
+        path: "/table",
+        element: <TablePage></TablePage>,
+      },
+      {
+        path: "/dialog",
+        element: <DialogPage></DialogPage>,
+      },
+      {
+        path: "/tab",
+        element: <TabPage></TabPage>,
       },
     ],
   },

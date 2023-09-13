@@ -12,6 +12,9 @@ const Navbar = () => {
     { path: "/card", name: "Card" },
     { path: "/accordion", name: "Accordion" },
     { path: "/imageList", name: "ImageList" },
+    { path: "/table", name: "Table" },
+    { path: "/dialog", name: "Dialog" },
+    { path: "/tab", name: "Tab" },
   ];
   return (
     <Box mb={8}>
@@ -21,7 +24,7 @@ const Navbar = () => {
             <Typography
               key={nav.path}
               color="white"
-              sx={{ marginRight: "15px" }}
+              sx={{ marginRight: "20px" }}
             >
               <Link href={nav.path} color="inherit" underline="hover">{nav.name}</Link>
             </Typography>
