@@ -20,6 +20,7 @@ import ImageListPage from "./Pages/ImageListPage.jsx";
 import TablePage from "./Pages/TablePage.jsx";
 import DialogPage from "./Pages/DialogPage.jsx";
 import TabPage from "./Pages/TabPage.jsx";
+import FormPage from "./Pages/FormPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "/tab",
         element: <TabPage></TabPage>,
+      },
+      {
+        path: "/form",
+        element: <FormPage></FormPage>,
       },
     ],
   },

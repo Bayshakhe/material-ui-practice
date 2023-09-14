@@ -15,6 +15,7 @@ const Navbar = () => {
     { path: "/table", name: "Table" },
     { path: "/dialog", name: "Dialog" },
     { path: "/tab", name: "Tab" },
+    { path: "/form", name: "Form" },
   ];
   return (
     <Box mb={8}>
