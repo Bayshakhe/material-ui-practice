@@ -1,5 +1,7 @@
 import {
+  Checkbox,
   FormControlLabel,
+  FormGroup,
   Grid,
   Radio,
   RadioGroup,
@@ -8,10 +10,20 @@ import {
 } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-const PersonalInfo = ({ register, control, errors }) => {
+const PersonalInfo = ({
+  register,
+  control,
+  errors,
+  interests,
+  setInterests,
+  handleInterests,
+}) => {
+  
   return (
     <>
-      <Typography mt={5} mb={2} variant="h4">Personal Information</Typography>
+      <Typography mt={5} mb={2} variant="h4">
+        Personal Information
+      </Typography>
       <Grid container spacing={3} maxWidth={900} mx="auto">
         {/* First name */}
         <Grid item xs={12} md={6}>
@@ -143,8 +155,8 @@ const PersonalInfo = ({ register, control, errors }) => {
             control={control}
             render={(field) => (
               <TextField
-                {...register("phone")}
                 {...field}
+                {...register('phone')}
                 type="number"
                 fullWidth
                 variant="outlined"
@@ -157,6 +169,25 @@ const PersonalInfo = ({ register, control, errors }) => {
               {errors.phone.message}
             </Typography>
           )}
+        </Grid>
+        {/* Interests */}
+        <Grid item xs={12} md={6}>
+          <Controller
+            name="interests"
+            control={control}
+            render={({field}) => (
+              <FormGroup {...field} >
+                <FormControlLabel label="Reading" control={<Checkbox value="Reading" checked={interests.includes('Reading')}/>} onChange={handleInterests}/>
+                <FormControlLabel label="Hiking" control={<Checkbox value="Hiking" checked={interests.includes('Hiking')}/>} onChange={handleInterests}/>
+                <FormControlLabel label="Cooking" control={<Checkbox value="Cooking" checked={interests.includes('Cooking')}/>} onChange={handleInterests}/>
+            </FormGroup>
+            )}
+          />
+          {/* {errors.phone && (
+            <Typography variant="body2" align="left" color="error">
+              {errors.phone.message}
+            </Typography>
+          )} */}
         </Grid>
       </Grid>
     </>
