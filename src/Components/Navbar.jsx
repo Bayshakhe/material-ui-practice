@@ -2,7 +2,8 @@ import { AppBar, Box, Link, Toolbar, Typography } from "@mui/material";
 
 const Navbar = () => {
   const navLists = [
-    { path: "/", name: "Typography" },
+    { path: "/", name: "Project" },
+    { path: "/typography", name: "Typography" },
     { path: "/button", name: "Button" },
     { path: "/textfield", name: "Textfield" },
     { path: "/othersFields", name: "OthersFields" },

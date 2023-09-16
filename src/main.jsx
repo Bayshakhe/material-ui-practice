@@ -21,6 +21,7 @@ import TablePage from "./Pages/TablePage.jsx";
 import DialogPage from "./Pages/DialogPage.jsx";
 import TabPage from "./Pages/TabPage.jsx";
 import FormPage from "./Pages/FormPage.jsx";
+import ProjectPage from "./Pages/ProjectPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <ProjectPage></ProjectPage>,
+      },
+      {
+        path: "/typography",
         element: <TypographyPage></TypographyPage>,
       },
       {
