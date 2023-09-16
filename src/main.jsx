@@ -21,7 +21,7 @@ import TablePage from "./Pages/TablePage.jsx";
 import DialogPage from "./Pages/DialogPage.jsx";
 import TabPage from "./Pages/TabPage.jsx";
 import FormPage from "./Pages/FormPage.jsx";
-import ProjectPage from "./Pages/ProjectPage.jsx";
+import ProjectPage from "./Pages/ProjectPage/ProjectPage.jsx";
 
 const router = createBrowserRouter([
   {
