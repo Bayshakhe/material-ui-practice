@@ -28,6 +28,72 @@ const AddressInfo = ({ register, control, errors }) => {
           </Typography>
         )}
       </Grid>
+      {/* city */}
+      <Grid item xs={12} md={6}>
+        <Controller
+          name="city"
+          control={control}
+          render={(field) => (
+            <TextField
+              {...register("city")}
+              {...field}
+              type="text"
+              fullWidth
+              variant="outlined"
+              label="City"
+            />
+          )}
+        />
+        {errors.city && (
+          <Typography variant="body2" align="left" color="error">
+            {errors.city.message}
+          </Typography>
+        )}
+      </Grid>
+      {/* state */}
+      <Grid item xs={12} md={6}>
+        <Controller
+          name="state"
+          control={control}
+          render={(field) => (
+            <TextField
+              {...register("state")}
+              {...field}
+              type="text"
+              fullWidth
+              variant="outlined"
+              label="State"
+            />
+          )}
+        />
+        {errors.state && (
+          <Typography variant="body2" align="left" color="error">
+            {errors.state.message}
+          </Typography>
+        )}
+      </Grid>
+      {/* ZipCode */}
+      <Grid item xs={12} md={6}>
+        <Controller
+          name="zipCode"
+          control={control}
+          render={(field) => (
+            <TextField
+              {...register("zipCode")}
+              {...field}
+              type="text"
+              fullWidth
+              variant="outlined"
+              label="Zip Code"
+            />
+          )}
+        />
+        {errors.zipCode && (
+          <Typography variant="body2" align="left" color="error">
+            {errors.zipCode.message}
+          </Typography>
+        )}
+      </Grid>
       </Grid>
     </>
   );
