@@ -56,10 +56,10 @@ const AddressInfo = () => {
             )}
           />
         </Grid>
-        {/* state */}
+        {/* State */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="state"
+            name="State"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>

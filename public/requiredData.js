@@ -10,7 +10,7 @@ const complexFormData = {
     addressInfo: {
         street: '123 Main St',
         city: 'Anytown',
-        state: 'CA',
+        State: 'CA',
         zipCode: '12345',
     },
     interests: ['Reading', 'Hiking', 'Cooking'],

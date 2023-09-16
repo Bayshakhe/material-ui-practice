@@ -2,7 +2,7 @@ import { Delete } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { Controller, useFieldArray } from "react-hook-form";
 
-const Education = ({ control, errors }) => {
+const Education = ({ control }) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "education", // Use "education" as the field name

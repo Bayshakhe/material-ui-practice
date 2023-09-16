@@ -5,7 +5,7 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const Employment = () => {
-  const { control, errors, setValue } = useFormContext(); // retrieve all hook methods
+  const { control, setValue } = useFormContext(); // retrieve all hook methods
 
   const { fields, append, remove } = useFieldArray({
     control,

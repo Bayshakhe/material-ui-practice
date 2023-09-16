@@ -1,7 +1,4 @@
-import {
-  Box,
-  Button,
-} from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -25,54 +22,72 @@ const schema = yup.object({
   // address information
   street: yup.string().required("Street is required"),
   city: yup.string().required("City is required"),
-  state: yup.string().required("State is required"),
-  zipCode: yup.string().required("ZipCode is required"),
+  State: yup.string().required("State is required"),
+  zipCode: yup
+    .number()
+    .min(5, "Minimun 5 Digit")
+    .required("ZipCode is required"),
+
+  degree: yup.string().required("State is required"),
+  graduationYear: yup.string().required("State is required"),
+  institution: yup.string().required("State is required"),
+
+  company: yup.string().required("State is required"),
+  startDate: yup.date().default(() => new Date()),
+  endDate: yup.date().default(() => new Date()),
+  position: yup.string().required("State is required"),
+
+  interests: yup.string().required("State is required"),
 });
 
 const ProjectPage = () => {
-  const methods = useForm({ resolver: yupResolver(schema),mode:'onChage' });
-  const [interests, setInterests] = useState([])
+  const methods = useForm({ resolver: yupResolver(schema), mode: "onChage" });
+  const [interests, setInterests] = useState([]);
 
-  const handleInterests = ({target: {checked, value}}) => {
-    if(checked){
-      setInterests([...interests, value])
+  const handleInterests = ({ target: { checked, value } }) => {
+    if (checked) {
+      setInterests([...interests, value]);
+    } else {
+      const filteredInterests = interests.filter(
+        (interest) => interest !== value
+      );
+      setInterests(filteredInterests);
     }
-    else{
-      const filteredInterests = interests.filter(interest => interest !== value)
-      setInterests(filteredInterests)
-    }
-  }
+  };
   // console.log(interests)
 
   const handleForm = (e) => {
-    
-    console.log({...e,interests});
+    console.log(e);
   };
 
-  console.log(methods.watch());
 
   return (
-    <FormProvider {...methods}><Box onSubmit={methods.handleSubmit(handleForm)} mt={3} component="form">
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(handleForm)} >
         {/* personal information */}
-        <PersonalInfo  interests={interests} setInterests={setInterests} handleInterests={handleInterests} />
+        <PersonalInfo
+          interests={interests}
+          setInterests={setInterests}
+          handleInterests={handleInterests}
+        />
 
         {/* address information */}
-        <AddressInfo  />
+        <AddressInfo />
 
         {/* education */}
-        <Education  />
+        <Education />
 
         {/* Employment History */}
         <Employment />
 
         {/* Refference */}
-        <Refference  />
+        <Refference />
 
-      <Button type="submit" variant="contained" sx={{ marginTop: "20px" }}>
-        Submit
-      </Button>
-    </Box></FormProvider>
-    
+        <Button type="submit" variant="contained" sx={{ marginTop: "20px" }}>
+          Submit
+        </Button>
+      </form>
+    </FormProvider>
   );
 };
 
