@@ -87,9 +87,9 @@ const FormPage = () => {
                   <TextField {...register("name")} {...field} label="Name" />
                 )}
               />
-              {errors.name && (
+              {errors?.name && (
                 <Typography variant="body2" color="error" align="left">
-                  {errors.name.message}
+                  {errors?.name.message}
                 </Typography>
               )}
             </Stack>
@@ -101,9 +101,9 @@ const FormPage = () => {
                   <TextField {...register("email")} {...field} label="Email" />
                 )}
               />
-              {errors.email && (
+              {errors?.email && (
                 <Typography variant="body2" color="error" align="left">
-                  {errors.email.message}
+                  {errors?.email.message}
                 </Typography>
               )}
             </Stack>
@@ -120,9 +120,9 @@ const FormPage = () => {
                   />
                 )}
               />
-              {errors.password && (
+              {errors?.password && (
                 <Typography variant="body2" color="error" align="left">
-                  {errors.password.message}
+                  {errors?.password.message}
                 </Typography>
               )}
             </Stack>
@@ -139,9 +139,9 @@ const FormPage = () => {
                   />
                 )}
               />
-              {errors.confirmPassword && (
+              {errors?.confirmPassword && (
                 <Typography variant="body2" color="error" align="left">
-                  {errors.confirmPassword.message}
+                  {errors?.confirmPassword.message}
                 </Typography>
               )}
             </Stack>
@@ -168,9 +168,9 @@ const FormPage = () => {
                       />
                     )}
                   />
-                  {errors.degree && (
+                  {errors?.degree && (
                     <Typography variant="body2" color="error" align="left">
-                      {errors.degree.message}
+                      {errors?.degree.message}
                     </Typography>
                   )}
                   <button type="button" onClick={() => remove(index)}>

@@ -5,20 +5,16 @@ import {
   Grid,
   Radio,
   RadioGroup,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { Controller } from "react-hook-form";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Controller, useFormContext } from "react-hook-form";
 
-const PersonalInfo = ({
-  register,
-  control,
-  errors,
-  interests,
-  setInterests,
-  handleInterests,
-}) => {
-  
+const PersonalInfo = ({ interests, handleInterests }) => {
+  const { control, setValue } = useFormContext(); // retrieve all hook methods
   return (
     <>
       <Typography mt={5} mb={2} variant="h4">
@@ -30,66 +26,119 @@ const PersonalInfo = ({
           <Controller
             name="firstName"
             control={control}
-            render={(field) => (
-              <TextField
-                {...register("firstName")}
-                {...field}
-                type="text"
-                fullWidth
-                variant="outlined"
-                label="First Name"
-              />
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <TextField
+                  {...field}
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  label="First Name"
+                />
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
             )}
           />
-          {errors.firstName && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.firstName.message}
-            </Typography>
-          )}
         </Grid>
         {/* Last name */}
         <Grid item xs={12} md={6}>
           <Controller
             name="lastName"
             control={control}
-            render={(field) => (
-              <TextField
-                {...register("lastName")}
-                {...field}
-                type="text"
-                fullWidth
-                variant="outlined"
-                label="Last Name"
-              />
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <TextField
+                  {...field}
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  label="Last Name"
+                />
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
             )}
           />
-          {errors.lastName && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.lastName.message}
-            </Typography>
-          )}
+        </Grid>
+        {/* Email */}
+        <Grid item xs={12} md={6}>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <TextField
+                  {...field}
+                  type="email"
+                  fullWidth
+                  variant="outlined"
+                  label="Email"
+                />
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
+            )}
+          />
+        </Grid>
+        {/* Phone */}
+        <Grid item xs={12} md={6}>
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <TextField
+                  {...field}
+                  type="tel"
+                  fullWidth
+                  variant="outlined"
+                  label="Phone"
+                />
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
+            )}
+          />
         </Grid>
         {/* Date Of Birth */}
         <Grid item xs={12} md={6}>
+          <Stack>
           <Controller
             name="dateOfBirth"
             control={control}
-            render={(field) => (
-              <TextField
-                {...register("dateOfBirth")}
-                {...field}
-                type="date"
-                fullWidth
-                variant="outlined"
-                // label="Last Name"
-              />
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    value={field.value}
+                    onChange={(newValue) =>
+                      setValue("dateOfBirth", newValue?.$d)
+                    }
+                    label="Date of birth"
+                  />
+                </LocalizationProvider>
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
             )}
           />
-          {errors.dateOfBirth && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.dateOfBirth.message}
-            </Typography>
-          )}
+          </Stack>
         </Grid>
         {/* Gender */}
         <Grid item xs={12} md={6}>
@@ -97,97 +146,82 @@ const PersonalInfo = ({
           <Controller
             name="gender"
             control={control}
-            render={(field) => (
-              <RadioGroup {...field} defaultValue="male" row>
-                <FormControlLabel
-                  {...register("gender")}
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  {...register("gender")}
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  {...register("gender")}
-                  value="other"
-                  control={<Radio />}
-                  label="Other"
-                />
-              </RadioGroup>
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <RadioGroup {...field} defaultValue="male" row>
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Other"
+                  />
+                </RadioGroup>
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
             )}
           />
-          {errors.gender && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.gender.message}
-            </Typography>
-          )}
-        </Grid>
-        {/* Email */}
-        <Grid item xs={12} md={6}>
-          <Controller
-            name="email"
-            control={control}
-            render={(field) => (
-              <TextField
-                {...register("email")}
-                {...field}
-                type="email"
-                fullWidth
-                variant="outlined"
-                label="Email"
-              />
-            )}
-          />
-          {errors.email && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.email.message}
-            </Typography>
-          )}
-        </Grid>
-        {/* Phone */}
-        <Grid item xs={12} md={6}>
-          <Controller
-            name="phone"
-            control={control}
-            render={(field) => (
-              <TextField
-                {...field}
-                {...register('phone')}
-                type="number"
-                fullWidth
-                variant="outlined"
-                label="Phone"
-              />
-            )}
-          />
-          {errors.phone && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.phone.message}
-            </Typography>
-          )}
         </Grid>
         {/* Interests */}
         <Grid item xs={12} md={6}>
+          <Typography align="left">Interests</Typography>
           <Controller
             name="interests"
             control={control}
-            render={({field}) => (
-              <FormGroup {...field} >
-                <FormControlLabel label="Reading" control={<Checkbox value="Reading" checked={interests.includes('Reading')}/>} onChange={handleInterests}/>
-                <FormControlLabel label="Hiking" control={<Checkbox value="Hiking" checked={interests.includes('Hiking')}/>} onChange={handleInterests}/>
-                <FormControlLabel label="Cooking" control={<Checkbox value="Cooking" checked={interests.includes('Cooking')}/>} onChange={handleInterests}/>
-            </FormGroup>
+            render={({ field, fieldState: { error } }) => (
+              <>
+                <FormGroup {...field} row>
+                  <FormControlLabel
+                    label="Reading"
+                    control={
+                      <Checkbox
+                        value="Reading"
+                        checked={interests.includes("Reading")}
+                      />
+                    }
+                    onChange={handleInterests}
+                  />
+                  <FormControlLabel
+                    label="Hiking"
+                    control={
+                      <Checkbox
+                        value="Hiking"
+                        checked={interests.includes("Hiking")}
+                      />
+                    }
+                    onChange={handleInterests}
+                  />
+                  <FormControlLabel
+                    label="Cooking"
+                    control={
+                      <Checkbox
+                        value="Cooking"
+                        checked={interests.includes("Cooking")}
+                      />
+                    }
+                    onChange={handleInterests}
+                  />
+                </FormGroup>
+                {error && (
+                  <Typography variant="body2" align="left" color="error">
+                    {error.message}
+                  </Typography>
+                )}
+              </>
             )}
           />
-          {/* {errors.phone && (
-            <Typography variant="body2" align="left" color="error">
-              {errors.phone.message}
-            </Typography>
-          )} */}
         </Grid>
       </Grid>
     </>

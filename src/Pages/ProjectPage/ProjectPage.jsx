@@ -2,12 +2,15 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PersonalInfo from "./PersonalInfo";
 import AddressInfo from "./AddressInfo";
 import { useState } from "react";
+import Education from "./Education";
+import Employment from "./Employment";
+import Refference from "./Refference";
 
 const schema = yup.object({
   // personal information
@@ -18,7 +21,7 @@ const schema = yup.object({
     .string()
     .email("Please enter a valid email")
     .required("Email is required"),
-  phone: yup.string().number().required("Phone no is required"),
+  phone: yup.string().required("Phone no is required"),
   // address information
   street: yup.string().required("Street is required"),
   city: yup.string().required("City is required"),
@@ -27,12 +30,7 @@ const schema = yup.object({
 });
 
 const ProjectPage = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  const methods = useForm({ resolver: yupResolver(schema),mode:'onChage' });
   const [interests, setInterests] = useState([])
 
   const handleInterests = ({target: {checked, value}}) => {
@@ -47,19 +45,34 @@ const ProjectPage = () => {
   // console.log(interests)
 
   const handleForm = (e) => {
+    
     console.log({...e,interests});
   };
+
+  console.log(methods.watch());
+
   return (
-    <Box onSubmit={handleSubmit(handleForm)} mt={3} component="form">
+    <FormProvider {...methods}><Box onSubmit={methods.handleSubmit(handleForm)} mt={3} component="form">
         {/* personal information */}
-        <PersonalInfo register={register} control={control} errors={errors} interests={interests} setInterests={setInterests} handleInterests={handleInterests} />
+        <PersonalInfo  interests={interests} setInterests={setInterests} handleInterests={handleInterests} />
+
         {/* address information */}
-        <AddressInfo register={register} control={control} errors={errors} />
+        <AddressInfo  />
+
+        {/* education */}
+        <Education  />
+
+        {/* Employment History */}
+        <Employment />
+
+        {/* Refference */}
+        <Refference  />
 
       <Button type="submit" variant="contained" sx={{ marginTop: "20px" }}>
         Submit
       </Button>
-    </Box>
+    </Box></FormProvider>
+    
   );
 };
 
