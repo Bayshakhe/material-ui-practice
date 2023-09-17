@@ -13,8 +13,8 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Controller, useFormContext } from "react-hook-form";
 
-const PersonalInfo = ({ interests, handleInterests }) => {
-  const { control, setValue } = useFormContext(); // retrieve all hook methods
+const PersonalInfo = () => {
+  const { control } = useFormContext(); // retrieve all hook methods
   return (
     <>
       <Typography mt={5} mb={2} variant="h4">
@@ -116,28 +116,26 @@ const PersonalInfo = ({ interests, handleInterests }) => {
         {/* Date Of Birth */}
         <Grid item xs={12} md={6}>
           <Stack>
-          <Controller
-            name="dateOfBirth"
-            control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    value={field.value}
-                    onChange={(newValue) =>
-                      setValue("dateOfBirth", newValue?.$d)
-                    }
-                    label="Date of birth"
-                  />
-                </LocalizationProvider>
-                {error && (
-                  <Typography variant="body2" align="left" color="error">
-                    {error.message}
-                  </Typography>
-                )}
-              </>
-            )}
-          />
+            <Controller
+              name="dateOfBirth"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      {...field}
+                      value={field.value}
+                      label="Date of birth"
+                    />
+                  </LocalizationProvider>
+                  {error && (
+                    <Typography variant="body2" align="left" color="error">
+                      {error.message}
+                    </Typography>
+                  )}
+                </>
+              )}
+            />
           </Stack>
         </Grid>
         {/* Gender */}
@@ -180,38 +178,47 @@ const PersonalInfo = ({ interests, handleInterests }) => {
           <Controller
             name="interests"
             control={control}
+            defaultValue={[]}
             render={({ field, fieldState: { error } }) => (
               <>
-                <FormGroup {...field} row>
+                <FormGroup
+                  {...field}
+                  onChange={({ target: { value, checked } }) => {
+                    if (checked) {
+                      return field.onChange([...field.value, value]);
+                    }
+                    field.onChange(
+                      field.value.filter((interest) => interest != value)
+                    );
+                  }}
+                  row
+                >
                   <FormControlLabel
                     label="Reading"
                     control={
                       <Checkbox
                         value="Reading"
-                        checked={interests.includes("Reading")}
+                        checked={field.value.includes("Reading")}
                       />
                     }
-                    onChange={handleInterests}
                   />
                   <FormControlLabel
                     label="Hiking"
                     control={
                       <Checkbox
                         value="Hiking"
-                        checked={interests.includes("Hiking")}
+                        checked={field.value.includes("Hiking")}
                       />
                     }
-                    onChange={handleInterests}
                   />
                   <FormControlLabel
                     label="Cooking"
                     control={
                       <Checkbox
                         value="Cooking"
-                        checked={interests.includes("Cooking")}
+                        checked={field.value.includes("Cooking")}
                       />
                     }
-                    onChange={handleInterests}
                   />
                 </FormGroup>
                 {error && (

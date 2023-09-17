@@ -59,7 +59,7 @@ const AddressInfo = () => {
         {/* State */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="State"
+            name="state"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
@@ -88,7 +88,7 @@ const AddressInfo = () => {
               <>
               <TextField
                 {...field}
-                type="text"
+                type="number"
                 fullWidth
                 variant="outlined"
                 label="Zip Code"
