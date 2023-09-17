@@ -1,17 +1,19 @@
 import {
-  Checkbox,
   FormControlLabel,
   FormGroup,
   Grid,
   Radio,
   RadioGroup,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Controller, useFormContext } from "react-hook-form";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import CustomizeTextField from "../../Components/CustomizeTextField";
+import CusatomizeCheckbox from "../../Components/CusatomizeCheckbox";
 
 const PersonalInfo = () => {
   const { control } = useFormContext(); // retrieve all hook methods
@@ -23,86 +25,46 @@ const PersonalInfo = () => {
       <Grid container spacing={3} maxWidth={900} mx="auto">
         {/* First name */}
         <Grid item xs={12} md={6}>
-          <Controller
-            name="firstName"
+          <CustomizeTextField
+            name="personalInformation.firstName"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-                <TextField
-                  {...field}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  label="First Name"
-                />
-                {error && (
-                  <Typography variant="body2" align="left" color="error">
-                    {error.message}
-                  </Typography>
-                )}
-              </>
-            )}
+            type="text"
+            label="First Name"
           />
         </Grid>
         {/* Last name */}
         <Grid item xs={12} md={6}>
-          <Controller
-            name="lastName"
+          <CustomizeTextField
+            name="personalInformation.lastName"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-                <TextField
-                  {...field}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  label="Last Name"
-                />
-                {error && (
-                  <Typography variant="body2" align="left" color="error">
-                    {error.message}
-                  </Typography>
-                )}
-              </>
-            )}
+            type="text"
+            label="Last Name"
           />
         </Grid>
         {/* Email */}
         <Grid item xs={12} md={6}>
-          <Controller
-            name="email"
+          <CustomizeTextField
+            name="personalInformation.email"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-                <TextField
-                  {...field}
-                  type="email"
-                  fullWidth
-                  variant="outlined"
-                  label="Email"
-                />
-                {error && (
-                  <Typography variant="body2" align="left" color="error">
-                    {error.message}
-                  </Typography>
-                )}
-              </>
-            )}
+            type="email"
+            label="Email"
           />
         </Grid>
         {/* Phone */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="phone"
+            name="personalInformation.phone"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
-                <TextField
+                <PhoneInput
                   {...field}
-                  type="tel"
-                  fullWidth
-                  variant="outlined"
-                  label="Phone"
+                  inputStyle={{
+                    width: "100%",
+                    height: "55px",
+                  }}
+                  country="RU"
+                  value={field.value}
                 />
                 {error && (
                   <Typography variant="body2" align="left" color="error">
@@ -117,7 +79,7 @@ const PersonalInfo = () => {
         <Grid item xs={12} md={6}>
           <Stack>
             <Controller
-              name="dateOfBirth"
+              name="personalInformation.dateOfBirth"
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <>
@@ -126,13 +88,14 @@ const PersonalInfo = () => {
                       {...field}
                       value={field.value}
                       label="Date of birth"
+                      slotProps={{
+                        textField:{
+                          error: !!error,
+                          helperText: error?.message
+                        }
+                      }}
                     />
                   </LocalizationProvider>
-                  {error && (
-                    <Typography variant="body2" align="left" color="error">
-                      {error.message}
-                    </Typography>
-                  )}
                 </>
               )}
             />
@@ -142,7 +105,7 @@ const PersonalInfo = () => {
         <Grid item xs={12} md={6}>
           <Typography align="left">Gender</Typography>
           <Controller
-            name="gender"
+            name="personalInformation.gender"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
@@ -165,7 +128,7 @@ const PersonalInfo = () => {
                 </RadioGroup>
                 {error && (
                   <Typography variant="body2" align="left" color="error">
-                    {error.message}
+                    {error?.message}
                   </Typography>
                 )}
               </>
@@ -193,32 +156,20 @@ const PersonalInfo = () => {
                   }}
                   row
                 >
-                  <FormControlLabel
+                  <CusatomizeCheckbox
                     label="Reading"
-                    control={
-                      <Checkbox
-                        value="Reading"
-                        checked={field.value.includes("Reading")}
-                      />
-                    }
+                    value="Reading"
+                    field={field}
                   />
-                  <FormControlLabel
+                  <CusatomizeCheckbox
                     label="Hiking"
-                    control={
-                      <Checkbox
-                        value="Hiking"
-                        checked={field.value.includes("Hiking")}
-                      />
-                    }
+                    value="Hiking"
+                    field={field}
                   />
-                  <FormControlLabel
+                  <CusatomizeCheckbox
                     label="Cooking"
-                    control={
-                      <Checkbox
-                        value="Cooking"
-                        checked={field.value.includes("Cooking")}
-                      />
-                    }
+                    value="Cooking"
+                    field={field}
                   />
                 </FormGroup>
                 {error && (

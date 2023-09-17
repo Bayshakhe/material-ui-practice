@@ -3,9 +3,10 @@ import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import CustomizeTextField from "../../Components/CustomizeTextField";
 
 const Employment = () => {
-  const { control, setValue } = useFormContext(); // retrieve all hook methods
+  const { control } = useFormContext(); // retrieve all hook methods
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -20,32 +21,18 @@ const Employment = () => {
       {fields.map((item, index) => (
         <Box key={item.id} component={"li"} sx={{ listStyleType: "none" }}>
           <Grid container spacing={3} maxWidth={900} mx="auto">
-            {/* Degree */}
+            {/* company */}
             <Grid item xs={12} md={6}>
               <Stack>
-                <Controller
-                  name={`employmentHistory[${index}].company`} // Use array syntax
+                <CustomizeTextField
+                  name={`employmentHistory[${index}].company`}
                   control={control}
-                  render={({ field, fieldState: { error } }) => (
-                    <>
-                      <TextField
-                        {...field}
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        label="Company"
-                      />
-                      {error && (
-                        <Typography variant="body2" align="left" color="error">
-                          {error.message}
-                        </Typography>
-                      )}
-                    </>
-                  )}
+                  type="text"
+                  label="Company"
                 />
               </Stack>
             </Grid>
-            {/* Institution */}
+            {/* position */}
             <Grid item xs={12} md={6}>
               <Stack>
                 <Controller
@@ -70,7 +57,7 @@ const Employment = () => {
                 />
               </Stack>
             </Grid>
-            {/* Graduation Year */}
+            {/* Start date */}
             <Grid item xs={12} md={6}>
               <Stack>
                 <Controller
@@ -80,13 +67,8 @@ const Employment = () => {
                     <>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
+                          {...field}
                           value={field.value}
-                          onChange={(newValue) =>
-                            setValue(
-                              `employmentHistory[${index}].startDate`,
-                              newValue?.$d
-                            )
-                          }
                           label="Start Date"
                         />
                       </LocalizationProvider>
@@ -96,19 +78,13 @@ const Employment = () => {
                         </Typography>
                       )}
                     </>
-                    // <TextField
-                    //   {...field}
-                    //   type="text"
-                    //   fullWidth
-                    //   variant="outlined"
-                    //   label="Start Date"
-                    // />
                   )}
                 />
               </Stack>
             </Grid>
+            {/* End date */}
             <Grid item xs={12} md={6}>
-            <Stack>
+              <Stack>
                 <Controller
                   name={`employmentHistory[${index}].endDate`} // Use array syntax
                   control={control}
@@ -116,13 +92,8 @@ const Employment = () => {
                     <>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
+                          {...field}
                           value={field.value}
-                          onChange={(newValue) =>
-                            setValue(
-                              `employmentHistory[${index}].endDate`,
-                              newValue?.$d
-                            )
-                          }
                           label="End Date"
                         />
                       </LocalizationProvider>

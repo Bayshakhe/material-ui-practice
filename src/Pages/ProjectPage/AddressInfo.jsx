@@ -13,7 +13,7 @@ const AddressInfo = () => {
         {/* Street */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="street"
+            name="addressInformation.street"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
@@ -36,7 +36,7 @@ const AddressInfo = () => {
         {/* city */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="city"
+            name="addressInformation.city"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
@@ -59,7 +59,7 @@ const AddressInfo = () => {
         {/* State */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="state"
+            name="addressInformation.state"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
@@ -82,7 +82,7 @@ const AddressInfo = () => {
         {/* ZipCode */}
         <Grid item xs={12} md={6}>
           <Controller
-            name="zipCode"
+            name="addressInformation.zipCode"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <>
