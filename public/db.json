@@ -1,34 +1,38 @@
 {
-  "additionalInfo": { "comments": "sdfghjk" },
-  "interests": ["Reading", "Cooking"],
-  "employmentHistory": [
-    {
-      "position": "Laborum Et laborios",
-      "endDate": "2023-09-05T18:00:00.000Z",
-      "startDate": "2023-09-07T18:00:00.000Z",
-      "company": "Glass and Perkins Traders"
+  "info":[{
+    "id": 1,
+    "additionalInfo": { "comments": "sdfghjk" },
+    "interests": ["Reading", "Cooking"],
+    "employmentHistory": [
+      {
+        "position": "Laborum Et laborios",
+        "endDate": "2023-09-05T18:00:00.000Z",
+        "startDate": "2023-09-07T18:00:00.000Z",
+        "company": "Glass and Perkins Traders"
+      }
+    ],
+    "cgpa": { "Gisela Carson": 4.5 },
+    "education": [
+      {
+        "institution": "Delectus obcaecati ",
+        "graduationYear": 1996,
+        "degree": "Modi fugiat delectus"
+      }
+    ],
+    "addressInformation": {
+      "street": "Deserunt non et poss",
+      "city": "Tenetur sint volupta",
+      "state": "Proident eum quidem",
+      "zipCode": "26950"
+    },
+    "personalInformation": {
+      "phone": "19349992427",
+      "email": "heleb@mailinator.com",
+      "dateOfBirth": "2023-09-06T18:00:00.000Z",
+      "lastName": "Torres",
+      "firstName": "Willa",
+      "gender": "female"
     }
-  ],
-  "cgpa": { "Gisela Carson": 4.5 },
-  "education": [
-    {
-      "institution": "Delectus obcaecati ",
-      "graduationYear": 1996,
-      "degree": "Modi fugiat delectus"
-    }
-  ],
-  "addressInformation": {
-    "street": "Deserunt non et poss",
-    "city": "Tenetur sint volupta",
-    "state": "Proident eum quidem",
-    "zipCode": "26950"
-  },
-  "personalInformation": {
-    "phone": "19349992427",
-    "email": "heleb@mailinator.com",
-    "dateOfBirth": "2023-09-06T18:00:00.000Z",
-    "lastName": "Torres",
-    "firstName": "Willa",
-    "gender": "female"
   }
+  ]
 }

@@ -1,0 +1,26 @@
+{
+  "info": [
+    {
+      "additionalInfo": {},
+      "interests": [
+        "Cooking",
+        "Hiking"
+      ],
+      "addressInformation": {
+        "street": "Corporis et voluptat",
+        "city": "Quas commodo nihil e",
+        "state": "Quaerat excepteur co",
+        "zipCode": "89343"
+      },
+      "personalInformation": {
+        "phone": "17658163553",
+        "email": "masolyvix@mailinator.com",
+        "dateOfBirth": "2023-09-28T18:00:00.000Z",
+        "lastName": "Dejesus",
+        "firstName": "Tana",
+        "gender": "other"
+      },
+      "id": 1
+    }
+  ]
+}
