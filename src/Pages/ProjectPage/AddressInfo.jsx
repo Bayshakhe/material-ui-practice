@@ -1,5 +1,6 @@
-import { Grid, TextField, Typography } from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
+import { Grid, Typography } from "@mui/material";
+import { useFormContext } from "react-hook-form";
+import CustomizeTextField from "../../Components/CustomizeTextField";
 
 const AddressInfo = () => {
   const { control } = useFormContext(); // retrieve all hook methods
@@ -12,94 +13,38 @@ const AddressInfo = () => {
       <Grid container spacing={3} maxWidth={900} mx="auto">
         {/* Street */}
         <Grid item xs={12} md={6}>
-          <Controller
+          <CustomizeTextField
             name="addressInformation.street"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-                <TextField
-                  {...field}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  label="Street"
-                />
-                {error && (
-                  <Typography variant="body2" align="left" color="error">
-                    {error.message}
-                  </Typography>
-                )}
-              </>
-            )}
+            type="text"
+            label="Street"
           />
         </Grid>
         {/* city */}
         <Grid item xs={12} md={6}>
-          <Controller
+          <CustomizeTextField
             name="addressInformation.city"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-                <TextField
-                  {...field}
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  label="City"
-                />
-                {error && (
-                  <Typography variant="body2" align="left" color="error">
-                    {error.message}
-                  </Typography>
-                )}
-              </>
-            )}
+            type="text"
+            label="City"
           />
         </Grid>
         {/* State */}
         <Grid item xs={12} md={6}>
-          <Controller
+          <CustomizeTextField
             name="addressInformation.state"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-              <TextField
-                {...field}
-                type="text"
-                fullWidth
-                variant="outlined"
-                label="State"
-              />
-              {error && (
-                <Typography variant="body2" align="left" color="error">
-                  {error.message}
-                </Typography>
-              )}
-              </>
-            )}
+            type="text"
+            label="State"
           />
         </Grid>
         {/* ZipCode */}
         <Grid item xs={12} md={6}>
-          <Controller
+          <CustomizeTextField
             name="addressInformation.zipCode"
             control={control}
-            render={({ field, fieldState: { error } }) => (
-              <>
-              <TextField
-                {...field}
-                type="number"
-                fullWidth
-                variant="outlined"
-                label="Zip Code"
-              />
-              {error && (
-                <Typography variant="body2" align="left" color="error">
-                  {error.message}
-                </Typography>
-              )}
-              </>
-            )}
+            type="number"
+            label="Zip Code"
           />
         </Grid>
       </Grid>
