@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import schema from "./YupValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const EditFormData = ({ data, setData }) => {
+const EditFormData = ({ data }) => {
   const methods = useForm({
     resolver: yupResolver(schema),
     mode: "onChage",

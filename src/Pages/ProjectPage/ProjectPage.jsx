@@ -14,12 +14,6 @@ import EditFormData from "./EditFormData";
 const ProjectPage = () => {
   const [data, setData] = useState({});
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3200/info")
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data[0]));
-  // }, [data]);
-
   const defaultValues = {
     personalInformation: {
       firstName: "",
@@ -78,45 +72,12 @@ const ProjectPage = () => {
           gender: data?.personalInformation?.gender,
           phone: data?.personalInformation?.phone,
         },
-        // employmentHistory: data?.employmentHistory,
-        // education: data?.education,
-        // cgpa: data?.cgpa,
-        // additionalInfo: data?.additionalInfo,
         addressInformation:{
           street: data?.addressInformation?.street,
           city: data?.addressInformation?.city,
           state: data?.addressInformation?.state,
           zipCode: data?.addressInformation?.zipCode,
       },
-      // education information
-      // education: [
-      //   {
-      //     degree: data?.education?.street,
-      //     graduationYear: data?.education?.graduationYear,
-      //     institution: data?.education?.institution,
-      // }
-      // ],
-      // cgpa
-      // cgpa: {
-      //         class_name: ,
-      //         point: ,
-      //     },
-      // employment history
-      // employmentHistory: yup.array().of(
-      //     yup.object({
-      //         company: ,
-      //         startDate: ,
-      //         endDate: ,
-      //         position: ,
-      //     })
-      // ),
-      // interests
-      // interests: data?.interests,
-      // additonal info
-      // additionalInfo: yup.object({
-      //     referredBy: yup.string(),
-      //     comments: yup.string(),
-      // }),
       });
     }
   }, [data, methods]);
